@@ -11,8 +11,8 @@ Read more here: https://refactoring.guru/design-patterns/factory-method
 ### Requirements:
 
  1. Accepts coins of 1,5,10,25 Cents i.e. penny, nickel, dime, and quarter.
- 2. Allow user to select products Coke(25), Pepsi(35), Soda(45)
- 3. Allow user to take refund by canceling the request.
+ 2. Allow user to select products Coke(25), Pepsi(30), Soda(10)
+ 3. Allow user to take refund by cancelling the request.
  4. Return the selected product and remaining change if any
  5. Allow reset operation for vending machine supplier.
  
