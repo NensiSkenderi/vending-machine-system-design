@@ -122,18 +122,18 @@ public class VendingMachineServiceImpl implements VendingMachineService {
             long balance = amount;
 
             while (balance > 0) {
-                if (balance >= Coin.PENNY.getCoinValue() && cashInventory.hasItem(Coin.PENNY)) {
-                    changes.add(Coin.PENNY);
-                    balance = balance - Coin.PENNY.getCoinValue();
-                } else if (balance >= Coin.QUARTER.getCoinValue() && cashInventory.hasItem(Coin.QUARTER)) {
+                if (balance >= Coin.QUARTER.getCoinValue() && cashInventory.hasItem(Coin.QUARTER)) {
                     changes.add(Coin.QUARTER);
                     balance = balance - Coin.QUARTER.getCoinValue();
-                } else if (balance >= Coin.NICKLE.getCoinValue() && cashInventory.hasItem(Coin.NICKLE)) {
-                    changes.add(Coin.NICKLE);
-                    balance = balance - Coin.NICKLE.getCoinValue();
                 } else if (balance >= Coin.DIME.getCoinValue() && cashInventory.hasItem(Coin.DIME)) {
                     changes.add(Coin.DIME);
                     balance = balance - Coin.DIME.getCoinValue();
+                } else if (balance >= Coin.NICKLE.getCoinValue() && cashInventory.hasItem(Coin.NICKLE)) {
+                    changes.add(Coin.NICKLE);
+                    balance = balance - Coin.NICKLE.getCoinValue();
+                } else if (balance >= Coin.PENNY.getCoinValue() && cashInventory.hasItem(Coin.PENNY)) {
+                    changes.add(Coin.PENNY);
+                    balance = balance - Coin.PENNY.getCoinValue();
                 }
                 else throw new NotSufficientChangeException("Try another product");
             }
