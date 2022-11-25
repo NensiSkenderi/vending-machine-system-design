@@ -77,7 +77,8 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         long changeAmount = currentBalance - currentItem.getPrice();
         List<Coin> changes = getChange(changeAmount);
         updateCashInventory(changes);
-        currentBalance = 0; currentItem = null;
+        currentBalance = 0;
+        currentItem = null;
         return changes;
     }
 
