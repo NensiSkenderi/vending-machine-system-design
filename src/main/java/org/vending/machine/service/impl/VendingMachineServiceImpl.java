@@ -16,8 +16,8 @@ import java.util.List;
 
 public class VendingMachineServiceImpl implements VendingMachineService {
 
-    private Inventory<Coin> cashInventory = new Inventory<>();
-    private Inventory<VendingMachineItem> itemInventory = new Inventory<>();
+    private final Inventory<Coin> cashInventory = new Inventory<>();
+    private final Inventory<VendingMachineItem> itemInventory = new Inventory<>();
     private long totalSales;
     private VendingMachineItem currentItem;
     private long currentBalance;
@@ -83,9 +83,7 @@ public class VendingMachineServiceImpl implements VendingMachineService {
     }
 
     private void updateCashInventory(List<Coin> changes) {
-        changes.forEach(c -> {
-            cashInventory.deduct(c);
-        });
+        changes.forEach(cashInventory::deduct);
     }
 
     private VendingMachineItem collectItem() {
