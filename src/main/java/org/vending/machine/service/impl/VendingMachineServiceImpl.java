@@ -141,7 +141,4 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         return changes;
     }
 
-    public long getTotalSales(){
-        return totalSales;
-    }
 }

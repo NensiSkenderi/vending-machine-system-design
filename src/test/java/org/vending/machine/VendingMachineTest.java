@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.vending.machine.exception.NotFullyPaidException;
+import org.vending.machine.exception.SoldOutException;
 import org.vending.machine.factory.Bucket;
 import org.vending.machine.factory.VendingMachineFactory;
 import org.vending.machine.model.Coin;
@@ -80,5 +81,18 @@ public class VendingMachineTest {
         );
 
         assertTrue(thrown.getMessage().contains("Price not paid, remaining balance is: 4"));
+    }
+
+    @Test()
+    public void shouldGiveSoldOutException(){
+        VendingMachineItem item = VendingMachineItem.PEPSI; // 30
+        vendingMachineService.reset();
+        SoldOutException thrown = assertThrows(
+                SoldOutException.class,
+                () -> vendingMachineService.selectItemAndGetPrice(item),
+                ""
+        );
+
+        assertTrue(thrown.getMessage().contains("Sold out, please try another item"));
     }
 }
