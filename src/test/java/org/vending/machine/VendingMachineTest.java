@@ -85,8 +85,12 @@ public class VendingMachineTest {
 
     @Test()
     public void shouldGiveSoldOutException(){
-        VendingMachineItem item = VendingMachineItem.PEPSI; // 30
-        vendingMachineService.reset();
+        VendingMachineItem item = VendingMachineItem.SODA; // 10
+        for(int i = 0; i < 5; i++) {
+            vendingMachineService.selectItemAndGetPrice(item);
+            vendingMachineService.insertCoin(Coin.DIME);
+            vendingMachineService.collectItemAndChange();
+        }
         SoldOutException thrown = assertThrows(
                 SoldOutException.class,
                 () -> vendingMachineService.selectItemAndGetPrice(item),
@@ -95,4 +99,5 @@ public class VendingMachineTest {
 
         assertTrue(thrown.getMessage().contains("Sold out, please try another item"));
     }
+
 }
