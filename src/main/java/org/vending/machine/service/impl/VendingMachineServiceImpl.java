@@ -1,6 +1,6 @@
 package org.vending.machine.service.impl;
 
-import org.vending.machine.exception.NotFullyPaidexception;
+import org.vending.machine.exception.NotFullyPaidException;
 import org.vending.machine.exception.NotSufficientChangeException;
 import org.vending.machine.exception.SoldOutException;
 import org.vending.machine.factory.Bucket;
@@ -97,7 +97,7 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         }
 
         long remainingBalance = currentItem.getPrice() - currentBalance;
-        throw new NotFullyPaidexception("Price not paid, remaining balance is: " + remainingBalance);
+        throw new NotFullyPaidException("Price not paid, remaining balance is: " + remainingBalance);
     }
 
     private boolean hasSufficientChange() {

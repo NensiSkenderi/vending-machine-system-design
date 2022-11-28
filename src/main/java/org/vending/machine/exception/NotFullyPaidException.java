@@ -1,10 +1,10 @@
 package org.vending.machine.exception;
 
-public class SoldOutException extends RuntimeException {
+public class NotFullyPaidException extends RuntimeException {
 
     private final String message;
 
-    public SoldOutException(String message) {
+    public NotFullyPaidException(String message) {
         this.message = message;
     }
 

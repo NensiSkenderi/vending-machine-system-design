@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import org.vending.machine.exception.NotFullyPaidException;
 import org.vending.machine.factory.Bucket;
 import org.vending.machine.factory.VendingMachineFactory;
 import org.vending.machine.model.Coin;
@@ -62,6 +63,22 @@ public class VendingMachineTest {
         assertEquals(second.get(0).name(), Coin.DIME.name());
         assertEquals(second.get(1).name(), Coin.DIME.name());
         assertEquals(second.stream().mapToInt(Coin::getCoinValue).sum(), 20);
+    }
 
+    @Test()
+    public void shouldGiveNotFullyPaidException(){
+        VendingMachineItem item = VendingMachineItem.PEPSI; // 30
+        long amount = vendingMachineService.selectItemAndGetPrice(item);
+        assertEquals(item.getPrice(), amount);
+        vendingMachineService.insertCoin(Coin.PENNY); // 1
+        vendingMachineService.insertCoin(Coin.QUARTER); // 25
+
+        NotFullyPaidException thrown = assertThrows(
+                NotFullyPaidException.class,
+                () -> vendingMachineService.collectItemAndChange(),
+                ""
+        );
+
+        assertTrue(thrown.getMessage().contains("Price not paid, remaining balance is: 4"));
     }
 }
