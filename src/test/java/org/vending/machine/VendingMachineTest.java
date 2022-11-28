@@ -21,17 +21,17 @@ public class VendingMachineTest {
     private static VendingMachineService vendingMachineService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         vendingMachineService = VendingMachineFactory.createVendingMachine();
     }
 
     @BeforeAll
-    public static void destroy(){
+    public static void destroy() {
         vendingMachineService = null;
     }
 
     @Test
-    public void shouldBuyItemWithExactPrice(){
+    public void shouldBuyItemWithExactPrice() {
         VendingMachineItem item = VendingMachineItem.COKE; // 25
         long amount = vendingMachineService.selectItemAndGetPrice(item);
         assertEquals(item.getPrice(), amount);
@@ -48,7 +48,7 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void shouldGet2DimesChangeBack(){
+    public void shouldGet2DimesChangeBack() {
         VendingMachineItem item = VendingMachineItem.PEPSI; // 30
         long amount = vendingMachineService.selectItemAndGetPrice(item);
         assertEquals(item.getPrice(), amount);
@@ -67,7 +67,7 @@ public class VendingMachineTest {
     }
 
     @Test()
-    public void shouldGiveNotFullyPaidException(){
+    public void shouldGiveNotFullyPaidException() {
         VendingMachineItem item = VendingMachineItem.PEPSI; // 30
         long amount = vendingMachineService.selectItemAndGetPrice(item);
         assertEquals(item.getPrice(), amount);
@@ -84,9 +84,9 @@ public class VendingMachineTest {
     }
 
     @Test()
-    public void shouldGiveSoldOutException(){
+    public void shouldGiveSoldOutException() {
         VendingMachineItem item = VendingMachineItem.SODA; // 10
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             vendingMachineService.selectItemAndGetPrice(item);
             vendingMachineService.insertCoin(Coin.DIME);
             vendingMachineService.collectItemAndChange();

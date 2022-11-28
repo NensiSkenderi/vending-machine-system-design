@@ -101,7 +101,7 @@ public class VendingMachineServiceImpl implements VendingMachineService {
     }
 
     private boolean hasSufficientChange() {
-        long amount = currentBalance - currentItem.getPrice(); // 20 - 7 = 13
+        long amount = currentBalance - currentItem.getPrice();
         try {
             getChange(amount);
         }
